@@ -1,0 +1,244 @@
+/* src/pages/SignInPage.css */
+@import "tailwindcss";
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #1d4c5c inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input {
+  caret-color: white;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Montserrat';
+  background-color: #0e3c49;
+}
+
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #093545;
+  position: relative;
+}
+
+.signin-form-box {
+  background: transparent;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.signin-title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.remember-me {
+  color: #b5b5b5;
+}
+
+.ant-btn-primary {
+  background-color: #2ecc71;
+  border: none;
+}
+
+.ant-btn-primary:hover {
+  background-color: #27ae60;
+}
+
+.bg-wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.movie-bg-wave {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.empty-movielist-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+  height: 100vh;           /* full viewport height */
+  text-align: center;
+}
+
+.empty-movielist-title {
+  font-family: 'Montserrat';
+  font-size: 48px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.glossy-hover-col {
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  border-radius: 12px;
+}
+
+.glossy-hover-col:hover {
+  border: 2px solid rgb(80, 205, 251, 0.7); /* semi-glossy white */
+  box-shadow: 0 0 10px rgba(80, 205, 251, 0.3); /* subtle glow */
+  background: linear-gradient(
+    145deg,
+    rgba(80, 205, 251, 0.05),
+    rgba(80, 205, 251, 0.02)
+  );
+}
+
+.glossy-hover-col:hover {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+
+.add-new-movie {
+  background-color: #2BD17E;
+  color: #FFFFFF; 
+  padding: 18px 28px;
+  border-radius: 10px;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.custom-input::placeholder {
+  color: #ffffff !important;
+  opacity: 1; /* ensures full visibility */
+}
+
+.custom-pagination-container {
+  text-align: center;
+  margin-top: 30px;
+  background-color: #073642;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.ant-pagination {
+  background-color: transparent;
+}
+
+.ant-pagination-item {
+  background-color: #0f2c36;
+  border: none;
+  color: white;
+}
+
+.ant-pagination-item a {
+  color: white;
+}
+
+.ant-pagination-item:hover {
+  background-color: #2ee59d !important;
+  transform: scale(1.05);
+}
+
+.ant-pagination-item-active {
+  background-color: #2ee59d !important;
+  border-radius: 5px;
+}
+
+.ant-pagination-item-active a {
+  color: black !important;
+  font-weight: bold;
+}
+
+.custom-nav-btn {
+  background-color: transparent;
+  /* background-color: #FFFFFF; */
+  border: none;
+  color: #FFFFFF !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ant-layout-header {
+  height: 100px !important;
+  background: transparent !important;
+  padding-top: 33px !important;
+  padding-bottom: 33px !important;
+}
+
+/* Targeting the input and affix wrapper inside */
+.ant-form-item-control-input .ant-input,
+.ant-form-item-control-input .ant-input-password,
+.ant-form-item-control-input .ant-input-affix-wrapper {
+  background-color: #1d4c5c !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Optional: make icons white */
+.ant-form-item-control-input .anticon {
+  color: #ffffff !important;
+}
+
+/* Placeholder styling */
+.ant-form-item-control-input .ant-input::placeholder {
+  color: #cfd8dc !important;
+}
+
+.custom-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #1d4c5c;
+  border-radius: 6px;
+  padding: 0 11px;
+  height: 40px;
+  background: #1d4c5c;
+  color: #FFFFFF;
+  transition: all 0.3s;
+}
+
+.custom-input-wrapper:focus-within {
+  border-color: #4096ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.input-prefix {
+  color: rgba(0, 0, 0, 0.25);
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.custom-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  background: transparent;
+}
+
+
+@media (max-width: 768px) {
+  .ant-upload {
+    padding: 20px 10px;
+  }
+  .ant-upload-text {
+    font-size: 12px;
+  }
+  .custom-input {
+    font-size: 13px;
+  }
+}
