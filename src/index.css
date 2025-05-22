@@ -231,6 +231,12 @@ body, html {
 }
 
 
+.language-selector {
+  top: 0;
+  right: 0;
+}
+
+
 @media (max-width: 768px) {
   .ant-upload {
     padding: 20px 10px;

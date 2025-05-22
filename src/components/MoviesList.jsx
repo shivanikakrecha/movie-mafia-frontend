@@ -4,6 +4,8 @@ import { PlusOutlined, LogoutOutlined, EditOutlined, DeleteOutlined, MoreOutline
 import Vectors from '../assets/Vectors.png';
 import { deleteMovieById, fetchMovie } from '../api/movies';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 const API_URL = import.meta.env.VITE_API_URL;
 const { Header, Content } = Layout;
@@ -17,7 +19,8 @@ export default function MyMoviesPage() {
   const [current, setCurrent] = useState(1);
   const [movieCount, setMovieCount] = useState(0);
   const navigate = useNavigate();
-  
+  const { t } = useTranslation();
+
   const posterSrc = (url) => {
     const isExternal = url?.startsWith("http");
     const posterUrl = isExternal
@@ -29,17 +32,17 @@ export default function MyMoviesPage() {
   const showDeleteConfirm = (movie) => {
     console.log("Delete Confirm Popup triggered!");
     confirm({
-      title: 'Are you sure you want to delete this movie?',
+      title: t('Are you sure you want to delete this movie?'),
       icon: <ExclamationCircleOutlined />,
-      content: `"${movie.title}" will be permanently removed.`,
-      okText: 'Yes',
+      content: `"${movie.title}" ${t('will be permanently removed.')}`,
+      okText: t('Yes'),
       okType: 'danger',
-      cancelText: 'No',
+      cancelText: t('No'),
       onOk() {
         deleteMovie(movie.id);
         notification.success({
-          message: 'Success',
-          description: `Movie "${movie.title}" deleted.`
+          message: t('Success'),
+          description: t('Movie') + movie.title + t('deleted') + '.'
         });
       },
       onCancel() {
@@ -69,6 +72,31 @@ export default function MyMoviesPage() {
           <span onClick={() => showDeleteConfirm(movie)}>
             <DeleteOutlined /> Delete
           </span>
+        ),
+      },
+    ],
+  });
+
+  const getNavMenu = () => ({
+    items: [
+      {
+        key: 'language',
+        label: (
+          <LanguageSelector />
+        ),
+      },
+      {
+        key: 'logout',
+        label: (
+          <Button
+            type="link"
+            onClick={handleLogout}
+            icon={<LogoutOutlined />}
+            style={{ color: 'black'}}
+            className="self-start md:self-auto"
+          >
+            {t('Logout')}
+          </Button>
         ),
       },
     ],
@@ -119,8 +147,8 @@ export default function MyMoviesPage() {
       fetchMovies();
     } catch (error) {
       notification.error({
-        message: 'Error',
-        description: `Error while deleting movie: ${error}`
+        message: t('Error'),
+        description: t('Something went wrong while deleting movie.')
       });
     } finally {
       setLoading(false);
@@ -148,7 +176,7 @@ export default function MyMoviesPage() {
                     level={3}
                     className="!text-white !m-0 flex items-center text-lg sm:text-xl md:text-2xl"
                   >
-                    My movies&nbsp;
+                    {t('My movies')}&nbsp;
                     <Tooltip title="Add new movie">
                       <Button
                         className="!bg-transparent !text-white !border-white !border-2"
@@ -160,14 +188,23 @@ export default function MyMoviesPage() {
                     </Tooltip>
                   </Title>
 
-                  <Button
-                    type="link"
-                    onClick={handleLogout}
-                    icon={<LogoutOutlined />}
-                    className="!text-white self-start md:self-auto"
-                  >
-                    Logout
-                  </Button>
+                  <Dropdown menu={getNavMenu()} trigger={['hover']} placement="bottomLeft">
+                    <MoreOutlined
+                      style={{
+                        position: 'absolute',
+                        top: 30,
+                        right: 30,
+                        // fontSize: '20px',
+                        color: '#fff',
+                        zIndex: 2,
+                        background: '#1d4c5c',
+                        borderRadius: '20%',
+                        padding: '6px',
+                        cursor: 'pointer',
+                      }}
+                      className='sm:p-1 md:p-2 sm:text-sm md:text-lg'
+                    />
+                  </Dropdown>
                 </Header>
 
                 <Content className="px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32">

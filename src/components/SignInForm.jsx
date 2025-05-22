@@ -3,9 +3,12 @@ import { signIn } from '../api/auth';
 import { useNavigate } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, notification } from 'antd';
+import LanguageSelector from './LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 export default function SignInForm() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async ({ email, password }) => {
     try {
@@ -19,7 +22,7 @@ export default function SignInForm() {
     } catch (err) {
       notification.error({
         message: 'Error',
-        description: err?.response?.data.detail ||  `Login Failed: Invalid credentials!`
+        description: err?.response?.data.detail || `Login Failed: Invalid credentials!`
       });
       console.error('Login failed', err);
     }
@@ -28,49 +31,49 @@ export default function SignInForm() {
 
   return (
     <div className="signin-form-box">
-      <h1 className="signin-title">Sign In</h1>
+      <h1 className="signin-title">{t('Sign In')}</h1>
       <Form
-        name="login"
+        name={t("login")}
         initialValues={{ remember: true }}
         onFinish={handleSubmit}
       >
         <Form.Item
-          name="email"
-          rules={[{ required: true, message: 'Please input your Email!' }]}
+          name={t("email")}
+          rules={[{ required: true, message: t('Please input your Email!') }]}
         >
           <Input
             prefix={<UserOutlined />}
-            placeholder="Email"
+            placeholder={t("Email")}
             size="large"
             className='custom-input'
           />
         </Form.Item>
 
         <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
+          name={t("password")}
+          rules={[{ required: true, message: t('Please input your Password!') }]}
         >
           <Input.Password
             prefix={<LockOutlined />}
-            placeholder="Password"
+            placeholder={t("Password")}
             size="large"
             className='custom-input'
           />
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked">
-          <Checkbox className="remember-me">Remember me</Checkbox>
+          <Checkbox className="remember-me">{t("Remember me")}</Checkbox>
         </Form.Item>
 
         <Form.Item>
           <Button type="primary" htmlType="submit" size="large" block>
-            Login
+            {t('Login')}
           </Button>
         </Form.Item>
 
         <Form.Item>
           <Button type="default" onClick={() => navigate('/signup')} size="large" block>
-            SignUp
+            {t('SignUp')}
           </Button>
         </Form.Item>
       </Form>
