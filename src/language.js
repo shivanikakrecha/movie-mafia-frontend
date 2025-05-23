@@ -11,9 +11,9 @@ const languages = [
     flag: '🇫🇷',
   },
   {
-    code: 'de',
-    name: 'Deutsch',
-    flag: '🇩🇪',
+    code: 'hi',
+    name: 'Hindi',
+    flag: '🇮🇳',
   },
 ];
 

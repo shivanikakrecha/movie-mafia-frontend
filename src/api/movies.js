@@ -19,7 +19,7 @@ export const editMovie = async (movieId, movieData) => {
 };
 
 export const fetchMovie = async (page) => {
-  const skip = page <= 1 ? 1 : (page - 1) * 8;
+  const skip = page <= 1 ? 0 : (page - 1) * 8;
   const limit = 8;
   const response = await axios.get(`/movies/?skip=${skip}&limit=${limit}`);
   // const response = await axios.get('/movies');
